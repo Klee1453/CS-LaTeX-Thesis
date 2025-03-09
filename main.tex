@@ -1,0 +1,30 @@
+\documentclass{csthesis-mid}
+
+% 设置文档信息
+\renewcommand{\stuname}{张三} % 学生姓名
+\renewcommand{\stuid}{3210xxxxxx} % 学生学号
+\renewcommand{\teaname}{李四} % 指导教师
+\renewcommand{\stugrade}{2021级} % 学生年级
+\renewcommand{\stumajor}{信息安全} % 学生专业
+\renewcommand{\stucollege}{计算机科学与技术学院} % 学生所在学院
+\renewcommand{\stutitle}{毕业设计题目} % 毕设题目
+
+\begin{document}
+    % 封面
+    \input{contents/cover}
+    % 任务书
+    \input{contents/requirement}
+    % 目录
+    \input{contents/toc}
+    % 文档主体部分
+    \newpage
+    \pagestyle{Content}
+    \zihao{-4}
+    \include{contents/survey}
+    \include{contents/report}
+    \include{contents/translation}
+    \include{contents/original}
+    % 考核表页
+    \input{contents/assessment}
+
+\end{document}

@@ -1,0 +1,63 @@
+{
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.outDir": "%DIR%",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex-survey",
+            "command": "bibtex",
+            "args": [
+                "./contents/survey"
+            ]
+        },
+        {
+            "name": "bibtex-report",
+            "command": "bibtex",
+            "args": [
+                "./contents/report"
+            ]
+        },
+        {
+            "name": "clean",
+            "command": "cmd",
+            "args": [
+                "/c",
+                "del /q *.aux *.bbl *.blg *.log *.out *.toc *.lof *.lot *.fls *.fdb_latexmk *.synctex.gz *.xdv && del /q contents\\*.aux contents\\*.bbl contents\\*.blg contents\\*.log contents\\*.out contents\\*.toc contents\\*.lof contents\\*.lot contents\\*.fls contents\\*.fdb_latexmk contents\\*.synctex.gz contents\\*.xdv"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "XeLaTeX",
+            "tools": [
+                "xelatex"
+            ]
+        },
+        {
+            "name": "xe-bib-xe-xe",
+            "tools": [
+                "xelatex",
+                "bibtex-survey",
+                "bibtex-report",
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "Clean",
+            "tools": [
+                "clean"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "XeLaTeX"
+}
