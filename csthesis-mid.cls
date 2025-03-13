@@ -135,8 +135,9 @@
 % 超链接
 % colorlinks=true 超链接以颜色表示 false 超链接以方框框出
 % linkcolor 指定颜色
+% urlcolor 指定url链接的颜色
 % CJKbookmarks 让链接支持中文
-\RequirePackage[colorlinks=true,linkcolor=black,citecolor=black,CJKbookmarks=true]{hyperref}
+\RequirePackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,CJKbookmarks=true]{hyperref}
 \newcommand{\myeqref}[1]{式 (\ref{#1})}
 \newcommand{\mytaref}[1]{表 \ref{#1}}
 \newcommand{\myfiref}[1]{图 \ref{#1}}
@@ -173,6 +174,8 @@
 \numberwithin{table}{subsection}  % 表的编号与章节关联
 \renewcommand{\contentsname}{\vspace{-\baselineskip}} % 这条命令可以控制引入编译的各子文件是否参与编译	
 
+% 阻止页面底部自动对齐
+\raggedbottom
 
 % 定义封装的环境
 \newenvironment{requirementtext}
