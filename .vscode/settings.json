@@ -13,17 +13,10 @@
             ]
         },
         {
-            "name": "bibtex-survey",
+            "name": "bibtex-thesis",
             "command": "bibtex",
             "args": [
-                "./contents/survey"
-            ]
-        },
-        {
-            "name": "bibtex-report",
-            "command": "bibtex",
-            "args": [
-                "./contents/report"
+                "./contents/thesis"
             ]
         },
         {
@@ -46,8 +39,7 @@
             "name": "xe-bib-xe-xe",
             "tools": [
                 "xelatex",
-                "bibtex-survey",
-                "bibtex-report",
+                "bibtex-thesis",
                 "xelatex",
                 "xelatex"
             ]

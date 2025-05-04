@@ -1,6 +1,8 @@
-# CS-LaTeX-MidTerm
+# CS-LaTeX-Thesis
 
-浙江大学计算机学院毕业论文文献综述和开题报告 LaTeX 模板。
+浙江大学计算机学院毕业论文 LaTeX 模板。
+
+另可参见：[浙江大学计算机学院毕业论文文献综述和开题报告 LaTeX 模板](https://github.com/Klee1453/CS-LaTeX-MidTerm)。
 
 使用本仓库编译出的文档与 Word 模板生成的文档对比（两个文件叠加显示）：
 
@@ -11,14 +13,16 @@
 ## 使用方法
 
 1. 在 `main.tex` 中填写论文题目、作者等文档信息。
-2. 在 `contents/requirement.tex` 中填写指导教师对文献综述和开题报告的具体要求。
-3. 在 `contents/survey.tex` 中填写文献综述的内容。
-    - 在 `reference/survey-refs.bib` 中填写文献综述的参考文献。
-4. 在 `contents/report.tex` 中填写开题报告的内容。
-    - 在 `reference/report-refs.bib` 中填写开题报告的参考文献。
-5. 在 `contents/translation.tex` 中填写外文文献的翻译。
-6. 在 `contents/original.tex` 中填写翻译前的原始外文文献。
-7. 参考[下一节内容](#编译文档)编译文档。
+2. 在 `contents/acknowledge.tex` 中填写致谢部分。
+3. 在 `contents/abstract-cn.tex` 中填写论文的中文摘要及关键词。
+4. 在 `contents/abstract-en.tex` 中填写论文的英文摘要及关键词。
+5. 在 `contents/thesis.tex` 中填写论文的正文内容。
+    - 在 `reference/thesis-refs.bib` 中填写论文的参考文献。
+6. 如果需要，在 `contents/appendix.tex` 中填写附录内容。
+    - 为此，你需要在 `main.tex` 中取消对 `\input{contents/appendix}` 这一行的注释。
+7. 在 `contents/resume.tex` 中填写作者简历。
+8. 在 `contents/requirement.tex` 中填写指导教师对毕业论文（设计）的进度安排及任务要求，即本科生毕业论文（设计）任务书。
+9.  参考[下一节内容](#编译文档)编译文档。
 
 ## 编译文档
 
@@ -30,7 +34,7 @@
 - `xe-bib-xe-xe`：按照 XeLaTeX -> BibTeX -> XeLaTeX -> XeLaTeX 的顺序编译文档。这会完整生成参考文献和目录，适合最终生成 PDF。
 - `Clean`：清理所有中间产物（仅限 Windows 系统）。
 
-如果 `survey.tex` 或 `report.tex` 中没有引用任何参考文献，需要在文档中手动添加 `\nocite{*}` 以免参考文献为空导致 BibTeX 编译失败。这种情况下，也可以选择下面的[手动编译](#手动编译)方法。
+如果 `thesis.tex` 中没有引用任何参考文献，需要在文档中手动添加 `\nocite{*}` 以免参考文献为空导致 BibTeX 编译失败。这种情况下，也可以选择下面的[手动编译](#手动编译)方法。
 
 如果想要修改保存文档时自动触发的编译行为，可以修改 `.vscode/settings.json` 文件中的 `latex-workshop.latex.recipe.default` 配置项。
 
@@ -40,13 +44,12 @@
 
 ```bash
 xelatex main.tex
-bibtex ./contents/survey
-bibtex ./contents/report
+bibtex ./contents/thesis
 xelatex main.tex
 xelatex main.tex
 ```
 
-如果在 `survey.tex` 或 `report.tex` 中没有引用参考文献，需要省略对应的 `bibtex` 命令。
+如果在 `thesis.tex` 中没有引用参考文献，需要省略对应的 `bibtex` 命令。
 
 ### 使用 LaTexMK
 

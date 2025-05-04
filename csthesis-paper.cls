@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{csthesis-mid}[2025/03/08 v1.0 CS Undergraduate Thesis Literature Review and Research Proposal Class]
+\ProvidesClass{csthesis-mid}[2025/05/04 v1.0 ZJUCS Undergraduate Thesis Class]
 
 \LoadClass[UTF8,a4paper,twoside]{article}
 
@@ -25,6 +25,7 @@
 \newcommand{\stutitle}{在主文件设置毕设题目} % 毕设题目
 \newcommand{\stuengtitlelineone}{Set the First Line of Your English Title in main.tex} % 毕设英文题目
 \newcommand{\stuengtitlelinetwo}{Set the Second Line of Your English Title in main.tex}
+\newcommand{\submitdate}{在主文件设置提交日期} % 提交日期
 
 % === 页面设置 ===
 % 纸张大小：A4
@@ -152,7 +153,7 @@
 	\fancyhead[RO]{\header \stutitle}
 	\fancyhead[LE]{\header 浙江大学本科生毕业论文（设计）}
 	\fancyhead[RE]{}
-	\fancyfoot[C]{} % 页脚不需要页码
+	\fancyfoot[C]{\zihao{-5} \thepage}
 }
 \fancypagestyle{Content}{
 	\setcounter{page}{1}\pagenumbering{arabic}
@@ -177,7 +178,7 @@
 % 阻止页面底部自动对齐
 \raggedbottom
 
-% 定义封装的环境
+% 定义封装的任务书要求环境
 \newenvironment{requirementtext}
 {%
   \begin{textblock}{155}(34.5,58.5)
