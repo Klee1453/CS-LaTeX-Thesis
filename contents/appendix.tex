@@ -1,0 +1,73 @@
+\newpage
+\addNoindentTocEntry{附录}
+\begin{center}
+    ~\\[-1.5em]
+    \zihao{3}\CJKfamily{fs}\textbf{附\quad 录}
+\end{center}
+
+% === 以下内容仅作示例作用，实际内容请根据需要修改 ===
+
+\setcounter{section}{1}
+\renewcommand{\thesection}{A\arabic{section}}
+
+\par 以下内容仅作示例作用，实际内容请根据需要修改。
+
+\par \myeqref{equ:sample} 是一个示例公式。
+
+\begin{equation}
+  \label{equ:sample}
+  A=\overbrace{(a+b+c)+\underbrace{i(d+e+f)}_{\text{虚数}}}^{\text{复数}}
+\end{equation}
+
+\par \myfigref{fig:sample} 是一个示例图片。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.3\linewidth]{images/zju-logo.jpg}
+  \caption{\label{fig:sample}示例图片}
+\end{figure}
+
+\par \mytabref{tab:sample} 是一个示例表格。
+
+\begin{table}[htbp]
+  \caption{\label{tab:sample}自动调节列宽的表格}
+  \begin{tabularx}{\linewidth}{c|X<{\centering}}
+      \hline
+      第一列 & 第二列 \\ \hline
+      xxx & xxx \\ \hline
+      xxx & xxx \\ \hline
+      xxx & xxx \\ \hline
+  \end{tabularx}
+\end{table}
+
+\par \myargref{alg:sample} 是一个算法样例。
+
+\begin{algorithm}[H]
+  \caption{算法样例}\label{alg:sample}
+  \begin{algorithmic}[1] % [1] 参数表示行号从1开始
+    \Require 数组 $A[low...high]$ 和起始索引 $low$，结束索引 $high$ % \Require 用于描述输入参数
+    \Ensure 排序后的数组 $A$，其中元素按非递减顺序排列 % \Ensure 用于描述输出参数
+    \Function{QuickSort}{$A, low, high$}
+      \If{$low < high$}
+        \State $pivot \gets$ \Call{Partition}{$A, low, high$} % \State 用于普通语句
+        \State \Call{QuickSort}{$A, low, pivot-1$}
+        \State \Call{QuickSort}{$A, pivot+1, high$}
+      \EndIf
+    \EndFunction
+    
+    \Statex
+    
+    \Function{Partition}{$A, low, high$}
+      \State $pivot \gets A[high]$  \Comment{选择最后一个元素作为基准}
+      \State $i \gets low-1$  \Comment{小于基准的元素的索引}
+      \For{$j \gets low$ to $high-1$}
+        \If{$A[j] \leq pivot$}
+          \State $i \gets i+1$
+          \State 交换 $A[i]$ 和 $A[j]$
+        \EndIf
+      \EndFor
+      \State 交换 $A[i+1]$ 和 $A[high]$
+      \State \Return $i+1$ % 返回结果
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}

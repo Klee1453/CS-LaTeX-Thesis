@@ -4,23 +4,21 @@
 
 另可参见：[浙江大学计算机学院毕业论文文献综述和开题报告 LaTeX 模板](https://github.com/Klee1453/CS-LaTeX-MidTerm)。
 
-使用本仓库编译出的文档与 Word 模板生成的文档对比（两个文件叠加显示）：
-
-![demo](./images/demo.jpg)
+使用本仓库编译出的文档样例可见 `main.pdf`。
 
 主题内容参考[信电学院本科生毕业论文（设计）中期检查报告LaTeX模板](https://github.com/SuperbRa1n/ISEE_LaTeX_Mid-term)，本仓库针对格式要求进行了一些改动，并作了一些简单的封装。
 
 ## 使用方法
 
-1. 在 `main.tex` 中填写论文题目、作者等文档信息。
+1. 在 `main.tex` 中填写论文题目、作者等文档信息，并根据需要设置论文的密级。
 2. 在 `contents/acknowledge.tex` 中填写致谢部分。
 3. 在 `contents/abstract-cn.tex` 中填写论文的中文摘要及关键词。
 4. 在 `contents/abstract-en.tex` 中填写论文的英文摘要及关键词。
 5. 在 `contents/thesis.tex` 中填写论文的正文内容。
     - 在 `reference/thesis-refs.bib` 中填写论文的参考文献。
 6. 如果需要，在 `contents/appendix.tex` 中填写附录内容。
-    - 为此，你需要在 `main.tex` 中取消对 `\input{contents/appendix}` 这一行的注释。
-7. 在 `contents/resume.tex` 中填写作者简历。
+    - 如果你不希望包含附录，你需要在 `main.tex` 中注释掉 `\input{contents/appendix}` 这一行。
+7. 在 `contents/cv.tex` 中填写作者的个人履历（作者简历）。
 8. 在 `contents/requirement.tex` 中填写指导教师对毕业论文（设计）的进度安排及任务要求，即本科生毕业论文（设计）任务书。
 9.  参考[下一节内容](#编译文档)编译文档。
 

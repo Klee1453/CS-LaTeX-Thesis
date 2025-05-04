@@ -1,8 +1,18 @@
-\pagestyle{empty}
+\begin{coverpage}
 
 \AddToShipoutPictureBG*{
     \AtPageLowerLeft{\includegraphics[width=\paperwidth,height=\paperheight]{pre-compiled-pdf/cover.pdf}}
 }
+
+\ifSecretPaper
+    \begin{textblock}{20}(138, 28)
+        \checkmark
+    \end{textblock}
+\else
+    \begin{textblock}{20}(162, 28)
+        \checkmark
+    \end{textblock}
+\fi
 
 \begin{textblock}{210}(49,153)
     \CJKfamily{fs}\zihao{3}\bfseries
@@ -20,4 +30,4 @@
     \end{tabular}
 \end{textblock}
 
-\null\clearpage
+\end{coverpage}

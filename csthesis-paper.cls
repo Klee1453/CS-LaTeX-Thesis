@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{csthesis-mid}[2025/05/04 v1.0 ZJUCS Undergraduate Thesis Class]
+\ProvidesClass{csthesis-paper}[2025/05/04 v1.0 ZJUCS Undergraduate Thesis Class]
 
 \LoadClass[UTF8,a4paper,twoside]{article}
 
@@ -70,22 +70,22 @@
 % 多级标题设置
 \RequirePackage{titlesec}
 \setcounter{secnumdepth}{4}		% 设置标题层次共4层
-% 一级标题：三号仿宋加粗，居中
+% 一级标题：三号仿宋加粗
 \titleformat{\section}[block]
-{\CJKfamily{fs}\zihao{3}\bfseries\centering}
-{\chinese{section}、}{0pt}{}
+{\CJKfamily{fs}\zihao{3}\bfseries}
+{\arabic{section}.}{0.5em}{}
 % 二级标题：小三号仿宋加粗
 \titleformat{\subsection}[block]
 {\CJKfamily{fs}\zihao{-3}\bfseries}
-{\arabic{subsection}.}{0.5em}{}
+{\arabic{section}.\arabic{subsection}.}{0.5em}{}
 % 三级标题：四号仿宋加粗
 \titleformat{\subsubsection}[block]
 {\CJKfamily{fs}\zihao{4}\bfseries}
-{\arabic{subsection}.\arabic{subsubsection}}{0.5em}{}
+{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{0.5em}{}
 % 四级标题：四号仿宋加粗
 \titleformat{\paragraph}[block]
 {\CJKfamily{fs}\zihao{4}\bfseries}
-{\arabic{subsection}.\arabic{subsubsection}.\arabic{paragraph}}{0.5em}{}
+{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{paragraph}}{0.5em}{}
 % 设置段间距
 \titlespacing{\section}{0pt}{12pt}{6pt}				% 标题1 段前12磅 段后6磅
 \titlespacing{\subsection}{0pt}{13pt}{13pt}			% 标题2 段前13磅 段后13磅
@@ -104,35 +104,97 @@
 \RequirePackage{subfigure}
 \RequirePackage{caption}
 \RequirePackage{float}
-\captionsetup{labelsep=quad,labelfont=bf,font=singlespacing}
+% \captionsetup{labelsep=quad,labelfont=bf,font=singlespacing}
 % \renewcommand{\thefigure}{\arabic{subsection}.\arabic{figure}}
 % \renewcommand{\theequation}{\arabic{subsection}.\arabic{equation}}  % 公式的编号格式
 % 插入表格宏包
 \RequirePackage{booktabs}
 \RequirePackage{longtable}
+\RequirePackage{tabularx}
 \RequirePackage{multirow}
 \RequirePackage{array}
 \renewcommand{\thetable}{\arabic{subsection}.\arabic{table}}
 \RequirePackage{enumerate}
 
+% 插入公式
+\RequirePackage{amsmath}
+\RequirePackage{indentfirst}
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
 \RequirePackage{caption}
 
-% 设置图表标题字体
+% 设置图、表标题格式
+\DeclareCaptionFont{zjucap}{\CJKfamily{Songti}\zihao{5}\bfseries}
+\captionsetup{
+  font={zjucap,singlespacing},  % 宋体五号加粗单倍行距
+  labelsep=quad,      			% 标签与文字之间使用空格
+  labelfont=bf,       			% 标签文字加粗
+  textfont=bf,        			% 说明文字加粗
+}
+% 设置算法标题格式
+\captionsetup[algorithm]{
+  font={zjucap,singlespacing},  % 宋体五号加粗单倍行距
+  labelsep=quad,                 % 标签与文字之间使用空格
+  labelfont=bf,                  % 标签文字加粗
+  textfont=bf,                   % 说明文字加粗
+}
 
+% 设置图、表、算法标题字体
 \renewcommand{\figurename}{\imageortable\bfseries 图}
 \renewcommand{\tablename}{\imageortable\bfseries 表}
+\renewcommand{\ALG@name}{\imageortable\bfseries 算法}
+
+% 设置表格中文字采用五号宋体，行距为单倍行间距
+\RequirePackage{etoolbox}
+\AtBeginEnvironment{tabular}{\ifcover\else\CJKfamily{Songti}\zihao{5}\renewcommand{\arraystretch}{1.66}\fi}
+\AtBeginEnvironment{tabularx}{\ifcover\else\CJKfamily{Songti}\zihao{5}\renewcommand{\arraystretch}{1.66}\fi}
+\AtBeginEnvironment{longtable}{\ifcover\else\CJKfamily{Songti}\zihao{5}\renewcommand{\arraystretch}{1.66}\fi}
+
+% 封面使用的表格为特例（正常情况下，你不应该主动修改 cover.tex），使用一个布尔开关来控制
+\newif\ifcover
+\coverfalse
+% 定义封面环境
+\newenvironment{coverpage}{%
+  \covertrue  % 进入封面环境
+  % 其他封面设置...
+  \pagestyle{empty}
+}{%
+  \coverfalse  % 离开封面环境
+  % 其他封面结束设置...
+  \null\cleardoublepage
+}
+
+% 设置图表公式算法与下文空一行
+% \AtEndEnvironment{figure}{\vspace{\baselineskip}}
+% \AtEndEnvironment{table}{\vspace{\baselineskip}}
+% \AtEndEnvironment{equation}{\vspace{\baselineskip}}
+% \AtEndEnvironment{algorithm}{\vspace{\baselineskip}}
 
 % 设置目录
 \RequirePackage{titletoc}
 \setcounter{tocdepth}{3}
-\renewcommand{\thesection}{\CJKfamily{Heiti}\chinese{section}、}
-\renewcommand{\thesubsection}{\arabic{subsection}.}
-\renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}}
-\renewcommand{\theparagraph}{\arabic{subsection}.\arabic{subsubsection}.\arabic{paragraph}}
-\titlecontents{section}[2em]{\CJKfamily{Heiti}\zihao{-4}}{\contentslabel{2em}}{}{\titlerule*[0.5pc]{$\cdot$}\contentspage}
-\titlecontents{subsection}[2.5em]{\zihao{-4}}{\contentslabel{1em}}{}{\titlerule*[0.5pc]{$\cdot$}\contentspage}
-\titlecontents{subsubsection}[4.5em]{\zihao{-4}}{\contentslabel{1.83em}}{}{\titlerule*[0.5pc]{$\cdot$}\contentspage}
-\titlecontents{paragraph}[5.5em]{\zihao{-4}}{\contentslabel{2.67em}}{}{\titlerule*[0.5pc]{$\cdot$}\contentspage}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+\renewcommand{\theparagraph}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{paragraph}}
+\titlecontents{section}[1.17em]{\CJKfamily{Heiti}\zihao{-4}}{\contentslabel{1.17em}}{}{\titlerule*[0.5pc]{$\cdot$}\contentspage}
+\titlecontents{subsection}[3.5em]{\zihao{-4}}{\contentslabel{2em}}{}{\titlerule*[0.5pc]{$\cdot$}\contentspage}
+\titlecontents{subsubsection}[5.5em]{\zihao{-4}}{\contentslabel{2.83em}}{}{\titlerule*[0.5pc]{$\cdot$}\contentspage}
+\titlecontents{paragraph}[6.5em]{\zihao{-4}}{\contentslabel{3.67em}}{}{\titlerule*[0.5pc]{$\cdot$}\contentspage}
+
+% 用于无编号的特殊条目的目录样式
+% 这个样式与 section 类似，但没有编号空间，且起始位置与 section 的编号对齐
+\titlecontents{noindentsection}[0em]			% 缩进 0em
+  {\CJKfamily{Heiti}\zihao{-4}}      			% 与 section 相同的格式
+  {}                                 			% 没有编号
+  {}                                 			% 没有编号
+  {\titlerule*[0.5pc]{$\cdot$}\contentspage} 	% 与 section 相同的页码格式
+
+\newcommand{\addNoindentTocEntry}[1]{%
+  \phantomsection % 创建超链接锚点
+  \addcontentsline{toc}{noindentsection}{#1} % 使用自定义的 specialsection 类型
+}
+
 % 超链接
 % colorlinks=true 超链接以颜色表示 false 超链接以方框框出
 % linkcolor 指定颜色
@@ -140,10 +202,9 @@
 % CJKbookmarks 让链接支持中文
 \RequirePackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,CJKbookmarks=true]{hyperref}
 \newcommand{\myeqref}[1]{式 (\ref{#1})}
-\newcommand{\mytaref}[1]{表 \ref{#1}}
-\newcommand{\myfiref}[1]{图 \ref{#1}}
-% 修改 algorithm 环境的标题为“算法”
-% 直接重新定义 algorithm 的标题为中文
+\newcommand{\mytabref}[1]{表 \ref{#1}}
+\newcommand{\myfigref}[1]{图 \ref{#1}}
+\newcommand{\myargref}[1]{算法 \ref{#1}}
 % 设置页眉页脚
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
@@ -164,15 +225,10 @@
 	\fancyfoot[C]{\zihao{-5} \thepage}
 }
 
-% 插入公式
-\RequirePackage{amsmath}
-\RequirePackage{indentfirst}
-\RequirePackage{algorithm}
-\RequirePackage{algpseudocode}
-
-\numberwithin{equation}{subsection} % 将公式编号与章节关联
-\numberwithin{figure}{subsection} % 图的编号与章节关联
-\numberwithin{table}{subsection}  % 表的编号与章节关联
+\numberwithin{equation}{section} % 将公式编号与章节关联
+\numberwithin{figure}{section} % 图的编号与章节关联
+\numberwithin{table}{section}  % 表的编号与章节关联
+\numberwithin{algorithm}{section} % 算法的编号与章节关联
 \renewcommand{\contentsname}{\vspace{-\baselineskip}} % 这条命令可以控制引入编译的各子文件是否参与编译	
 
 % 阻止页面底部自动对齐
@@ -188,3 +244,9 @@
 {%
   \end{textblock}
 }
+
+% 定义用于控制论文密级的布尔开关
+% 这个开关可以在主文件中设置
+\newif\ifSecretPaper \SecretPaperfalse
+\newcommand{\SetSecretPaperTrue}{\SecretPapertrue}
+\newcommand{\SetSecretPaperFalse}{\SecretPaperfalse}

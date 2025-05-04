@@ -9,24 +9,39 @@
 \renewcommand{\stucollege}{计算机科学与技术学院} % 学生所在学院
 \renewcommand{\stutitle}{毕业设计题目} % 毕设题目
 \renewcommand{\submitdate}{2025年5月12日} % 提交日期
+% 如果是涉密论文，取消下面这行的注释
+% \SetSecretPaperTrue
+% 如果不是涉密论文（默认），则无需任何操作，或者可以显式调用下面这行
+% \SetSecretPaperFalse
 
 \begin{document}
     % 封面
     \input{contents/cover}
-    % 任务书
     \pagestyle{Index}
-    % \input{contents/declearation}
+    % 承诺书
+    \input{contents/declaration}
+    % 致谢
+    \input{contents/acknowledgement}
+    % 中英文摘要
+    \input{contents/abstract-zh}
+    \input{contents/abstract-en}
     % 目录
     \input{contents/toc}
     % 文档主体部分
-    \newpage
+    \cleardoublepage
+    \pagestyle{empty}
+    \includepdf[pages=1]{pre-compiled-pdf/big-part1.pdf}
+    \cleardoublepage
     \pagestyle{Content}
     \zihao{-4}
-    % \include{contents/survey}
-    % \include{contents/report}
-    % \include{contents/translation}
-    % \include{contents/original}
-    % 考核表页
-    % \input{contents/assessment}
+    \include{contents/thesis}
+    % 附录，如果不需要附录，可以注释掉下面这一行
+    \include{contents/appendix}
+    % 作者简历
+    \input{contents/cv}
+    % 任务书
+    \input{contents/requirement}
+    % 考核表
+    \input{contents/assessment}
 
 \end{document}

@@ -1,0 +1,31 @@
+% \nocite{*} % 如果没有任何参考文献，需要手动添加一个空引用，这样 xe-bib-xe-xe 的编译链不会意外退出
+% 正文部分，从这里开始
+
+\section{绪论}
+
+\subsection{背景}
+
+\par 徐州地方，历代大规模征战五十余次，是非曲折难以论说，但史家无不注意到，正是在这个古战场，
+决定了多少代王朝的盛衰兴亡、此兴彼落，所以古来就有问鼎中原之说。\upcite{schweizer2013comparative}
+
+\subsection{节标题}
+
+\section{章标题}
+
+\subsection{节标题}
+
+\subsubsection{小节标题}
+
+\subsubsection{小节标题}
+
+\newpage
+\addNoindentTocEntry{参考文献}
+\begin{center}
+    ~\\[-1.5em]
+    \zihao{3}\CJKfamily{fs}\textbf{参考文献}
+\end{center}
+\bibliographystyle{gbt7714-numerical}
+\phantomsection		% 要想目录中参考文献的超链接正确需要加这一语句
+{\normalfont\CJKfamily{Songti}\zihao{-4}\setlength{\baselineskip}{14pt}
+\renewcommand{\refname}{\vspace{-\baselineskip}}
+\bibliography{reference/thesis-refs}}
