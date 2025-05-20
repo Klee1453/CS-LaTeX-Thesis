@@ -32,7 +32,6 @@
 % 页面边距：左 2.5cm；右 2cm；上 2.5cm；下 2cm；装订线 0cm
 \RequirePackage{geometry}	
 \geometry{inner=2.5cm, outer=2cm, top=2.5cm, bottom=2cm, bindingoffset=0cm}
-\RequirePackage{subfigure}  % 导入subfigure宏包
 % 设置首行缩进2字符
 % 使用 \noindent 命令可以取消缩进
 \RequirePackage{indentfirst}
@@ -101,7 +100,7 @@
 % content...
 % \end{figure}
 \RequirePackage{graphicx}
-\RequirePackage{subfigure}
+\RequirePackage{subcaption}
 \RequirePackage{caption}
 \RequirePackage{float}
 % \captionsetup{labelsep=quad,labelfont=bf,font=singlespacing}
@@ -204,7 +203,7 @@
 \newcommand{\myeqref}[1]{式 (\ref{#1})}
 \newcommand{\mytabref}[1]{表 \ref{#1}}
 \newcommand{\myfigref}[1]{图 \ref{#1}}
-\newcommand{\myargref}[1]{算法 \ref{#1}}
+\newcommand{\myalgref}[1]{算法 \ref{#1}}
 % 设置页眉页脚
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
