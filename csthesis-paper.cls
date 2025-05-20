@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{csthesis-paper}[2025/05/04 v1.0 ZJUCS Undergraduate Thesis Class]
+\ProvidesClass{csthesis-paper}[2025/05/20 v1.1 ZJUCS Undergraduate Thesis Class]
 
 \LoadClass[UTF8,a4paper,twoside]{article}
 
@@ -26,6 +26,8 @@
 \newcommand{\stuengtitlelineone}{Set the First Line of Your English Title in main.tex} % 毕设英文题目
 \newcommand{\stuengtitlelinetwo}{Set the Second Line of Your English Title in main.tex}
 \newcommand{\submitdate}{在主文件设置提交日期} % 提交日期
+\newcommand{\taskbegindate}{在主文件设置日期} % 开始日期
+\newcommand{\taskenddate}{在主文件设置日期} % 结束日期
 
 % === 页面设置 ===
 % 纸张大小：A4
@@ -236,8 +238,19 @@
 % 定义封装的任务书要求环境
 \newenvironment{requirementtext}
 {%
-  \begin{textblock}{155}(34.5,58.5)
+  \begin{textblock}{144}(32,58.5)
     \CJKfamily{fs}\zihao{4}\bfseries
+    \linespread{1.8}\selectfont
+}%
+{%
+  \end{textblock}
+}
+
+% 定义封装的考核表指导教师评语环境
+\newenvironment{assessmenttext}
+{%
+  \begin{textblock}{138}(32,50)
+    \CJKfamily{fs}\zihao{-4}\bfseries
     \linespread{1.8}\selectfont
 }%
 {%

@@ -1,3 +1,16 @@
-\newpage
+\cleardoublepage % 此页单面打印
 \addNoindentTocEntry{《浙江大学本科生毕业论文（设计）考核表》}
-\includepdf[pages=1]{pre-compiled-pdf/assessment.pdf}
+
+\AddToShipoutPictureBG*{
+    \AtPageLowerLeft{\includegraphics[width=\paperwidth,height=\paperheight]{pre-compiled-pdf/assessment.pdf}}
+}
+
+\begin{assessmenttext}
+    % === 在这里填写指导教师对毕业论文（设计）的评语，评语从系统内导师评语复制 ===
+    \par 《原神》是由米哈游自主研发的一款全新开放世界冒险游戏。
+    游戏发生在一个被称作「提瓦特」的幻想世界，在这里，被神选中的人将被授予「神之眼」，导引元素之力。
+    你将扮演一位名为「旅行者」的神秘角色，在自由的旅行中邂逅性格各异、能力独特的同伴们，和他们一起击败强敌。
+    % === 指导教师对毕业论文（设计）的评语结束 ===
+\end{assessmenttext}
+
+\null\clearpage

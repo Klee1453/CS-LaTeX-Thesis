@@ -8,7 +8,9 @@
 \renewcommand{\stumajor}{信息安全} % 学生专业
 \renewcommand{\stucollege}{计算机科学与技术学院} % 学生所在学院
 \renewcommand{\stutitle}{毕业设计题目} % 毕设题目
-\renewcommand{\submitdate}{2025年5月12日} % 提交日期
+\renewcommand{\submitdate}{2025年5月12日} % 提交日期写系统提交日期即可
+\renewcommand{\taskbegindate}{2024年6月13日} % 用于任务书的开始日期，一般是选导时间
+\renewcommand{\taskenddate}{2025年5月30日} % 用于任务书的结束日期，一般是答辩时间
 % 如果是涉密论文，取消下面这行的注释
 % \SetSecretPaperTrue
 % 如果不是涉密论文（默认），则无需任何操作，或者可以显式调用下面这行
@@ -38,10 +40,10 @@
     % 附录，如果不需要附录，可以注释掉下面这一行
     \include{contents/appendix}
     % 作者简历
-    \input{contents/cv}
-    % 任务书
+    \include{contents/cv}
+    % 任务书和考核表
+    \pagestyle{empty}
     \input{contents/requirement}
-    % 考核表
     \input{contents/assessment}
 
 \end{document}
