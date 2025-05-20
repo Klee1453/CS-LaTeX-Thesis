@@ -74,11 +74,11 @@
 % 一级标题：三号仿宋加粗
 \titleformat{\section}[block]
 {\CJKfamily{fs}\zihao{3}\bfseries}
-{\arabic{section}.}{0.5em}{}
+{\arabic{section}}{0.5em}{}
 % 二级标题：小三号仿宋加粗
 \titleformat{\subsection}[block]
 {\CJKfamily{fs}\zihao{-3}\bfseries}
-{\arabic{section}.\arabic{subsection}.}{0.5em}{}
+{\arabic{section}.\arabic{subsection}}{0.5em}{}
 % 三级标题：四号仿宋加粗
 \titleformat{\subsubsection}[block]
 {\CJKfamily{fs}\zihao{4}\bfseries}
@@ -165,10 +165,14 @@
   \null\cleardoublepage
 }
 
-% 设置图表公式算法与下文空一行
+% 设置图表公式算法与上下文空一行
+% \AtBeginEnvironment{figure}{\vspace{\baselineskip}}
 % \AtEndEnvironment{figure}{\vspace{\baselineskip}}
+% \AtBeginEnvironment{table}{\vspace{\baselineskip}}
 % \AtEndEnvironment{table}{\vspace{\baselineskip}}
+% \AtBeginEnvironment{equation}{\vspace{0.5\baselineskip}}
 % \AtEndEnvironment{equation}{\vspace{\baselineskip}}
+% \AtBeginEnvironment{algorithm}{\vspace{\baselineskip}}
 % \AtEndEnvironment{algorithm}{\vspace{\baselineskip}}
 
 % 设置目录
