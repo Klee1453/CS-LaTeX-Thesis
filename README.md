@@ -4,7 +4,7 @@
 
 另可参见：[浙江大学计算机学院毕业论文文献综述和开题报告 LaTeX 模板](https://github.com/Klee1453/CS-LaTeX-MidTerm)。
 
-使用本仓库编译出的文档样例可见 `main.pdf`。
+使用本仓库编译出的文档样例可见 `main.pdf`。这是在[【生成用于装订的完整论文】](#生成用于装订的完整论文)预设下编译出的样例。
 
 主题内容参考[信电学院本科生毕业论文（设计）中期检查报告LaTeX模板](https://github.com/SuperbRa1n/ISEE_LaTeX_Mid-term)，本仓库针对格式要求进行了一些改动，并作了一些简单的封装。
 
@@ -22,13 +22,51 @@
 8. 在 `contents/requirement.tex` 中填写指导教师对毕业论文（设计）的进度安排及任务要求，即本科生毕业论文（设计）任务书。
 9.  参考[下一节内容](#编译文档)编译文档。
 
-在不同使用场景下，你可能需要对 `main.tex` 的一些行为进行注释或取消注释，如下表所示：
+此外，在不同使用场景下，你可能需要对 `main.tex` 中的一些行进行注释或取消注释。
 
-| 使用场景 | 需要注释的内容 |
-| :-: | :-: |
-| 在系统中上传论文 PDF | 任务书 `\input{contents/requirement}` 和考核表 `\input{contents/assessment}` |
-| 打印答辩用论文 PDF | 无 |
-| 装订完整的论文 PDF | TODO |
+一共有三行需要视情况被注释或取消注释，分别是：
+
+- 任务书 `\input{contents/requirement}`：本科生毕业论文（设计）任务书。
+- 考核表 `\input{contents/assessment}`：本科生毕业论文（设计）考核表。
+- 第二部分 `\input{contents/part2}`：装订论文时需要的第二部分内容，即文献综述和开题报告。
+
+以下是具体说明：
+
+### 生成上传到 `csugrs` 系统上的论文
+
+在 `main.tex` 中，上面提到的三行都需要处于被注释的状态，即：
+
+```latex
+% \input{contents/requirement}
+% \input{contents/assessment}
+% \input{contents/part2}
+```
+
+### 生成答辩用的论文（默认）
+
+在 `main.tex` 中，第二部分需要处于被注释的状态，即：
+
+```latex
+\input{contents/requirement}
+\input{contents/assessment}
+% \input{contents/part2}
+```
+
+### 生成用于装订的完整论文
+
+在 `main.tex` 中，上面提到的三行都需要处于取消注释的状态，即：
+
+```latex
+\input{contents/requirement}
+\input{contents/assessment}
+\input{contents/part2}
+```
+
+此外，你需要将编译好的文献综述和开题报告 PDF 文件放在 `mid` 目录下，并保持文件名为 `main.pdf`。
+
+然后，修改 `contents/part2.tex` 中的目录项，根据实际情况修改目录项中的页码。
+
+理论上，本模板不要求一定与我的[浙江大学计算机学院毕业论文文献综述和开题报告 LaTeX 模板](https://github.com/Klee1453/CS-LaTeX-MidTerm)搭配使用。~~但是这种处理目录的方式非常不优雅，并且第二部分的所有目录项都不支持超链接。~~
 
 ## 编译文档
 

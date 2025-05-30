@@ -1,11 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{csthesis-paper}[2025/05/20 v1.1 ZJUCS Undergraduate Thesis Class]
+\ProvidesClass{csthesis-paper}[2025/05/29 v1.2 ZJUCS Undergraduate Thesis Class]
 
 \LoadClass[UTF8,a4paper,twoside]{article}
 
 \RequirePackage[UTF8]{ctex}  % 加载ctex包，支持中文
 \RequirePackage{pdfpages}
 \RequirePackage{tocvsec2}
+\RequirePackage{subfiles} % 用于分别编译第一部分论文和第二部分开题报告
 
 % 设置参考文献
 % 引入natbib包，参考文献格式相关
@@ -92,6 +93,29 @@
 \titlespacing{\subsection}{0pt}{13pt}{13pt}			% 标题2 段前13磅 段后13磅
 \titlespacing{\subsubsection}{0pt}{13pt}{13pt}		% 标题3 段前13磅 段后13磅
 \titlespacing{\paragraph}{0pt}{13pt}{13pt}			% 标题4 段前13磅 段后13磅
+
+% 自定义一个高于section的级别用于目录中的特殊条目
+% 定义计数器
+\newcounter{mypart}
+\setcounter{mypart}{0}
+% 使用 ctex 提供的中文数字
+\renewcommand{\themypart}{\chinese{mypart}}
+% 定义命令
+\newcommand{\mypart}[1]{%
+    \stepcounter{mypart}%
+    % 添加到目录，使用 \texorpdfstring 处理 PDF 书签兼容性
+    \phantomsection % 创建超链接锚点
+    \addcontentsline{toc}{mypart}{\texorpdfstring{第\themypart 部分 \quad #1}{第\themypart 部分 #1}}%
+    % 不在正文中显示任何内容
+}
+
+% 重置section计数器的命令，每个mypart对section重新编号
+\newcommand{\resetSectionCounter}{%
+    \setcounter{section}{0}%
+    \setcounter{subsection}{0}%
+    \setcounter{subsubsection}{0}%
+    \setcounter{paragraph}{0}%
+}
 
 % 定义一个新的引用命令，自动将引用放到文本的上方
 \newcommand{\upcite}[1]{\textsuperscript{\citep{#1}}}
@@ -187,17 +211,56 @@
 \titlecontents{subsubsection}[5.5em]{\zihao{-4}}{\contentslabel{2.83em}}{}{\titlerule*[0.5pc]{$\cdot$}\contentspage}
 \titlecontents{paragraph}[6.5em]{\zihao{-4}}{\contentslabel{3.67em}}{}{\titlerule*[0.5pc]{$\cdot$}\contentspage}
 
+% 用于 mypart 的目录样式
+% 无缩进，四号仿宋加粗，无页码和点线
+\titlecontents{mypart}[0em]                    % 缩进 0em
+  {\vspace{0.5em}\CJKfamily{fs}\zihao{4}\bfseries}  % 四号仿宋加粗，前面额外间距
+  {}                                           % 没有编号
+  {}                                           % 没有编号
+  {}     
+
 % 用于无编号的特殊条目的目录样式
 % 这个样式与 section 类似，但没有编号空间，且起始位置与 section 的编号对齐
+% 无缩进，四号黑体
 \titlecontents{noindentsection}[0em]			% 缩进 0em
   {\CJKfamily{Heiti}\zihao{-4}}      			% 与 section 相同的格式
   {}                                 			% 没有编号
   {}                                 			% 没有编号
   {\titlerule*[0.5pc]{$\cdot$}\contentspage} 	% 与 section 相同的页码格式
 
+% 用于第一部分，自动编码页码
+% 参数为：章节编号及章节标题
 \newcommand{\addNoindentTocEntry}[1]{%
   \phantomsection % 创建超链接锚点
   \addcontentsline{toc}{noindentsection}{#1} % 使用自定义的 specialsection 类型
+}
+
+% 用于第二部分，手动编码页码
+% 两个参数分别为：章节编号及章节标题、页码
+\newcommand{\addNoindentTocEntryWithPage}[2]{%
+  \phantomsection % 创建超链接锚点
+  \addtocontents{toc}{\protect\contentsline{noindentsection}{#1}{#2}{}}
+}
+
+% 用于第二部分，手动编码页码，罗马数字版本
+% 两个参数分别为：章节编号及章节标题、页码
+\newcommand{\addNoindentTocEntryWithPageRoman}[2]{%
+  \phantomsection % 创建超链接锚点
+  \addtocontents{toc}{\protect\contentsline{noindentsection}{#1}{\uppercase\expandafter{\romannumeral#2}}{}}
+}
+
+% 用于手动在目录中插入 第二部分文献综述和开题报告中的 目录项
+% 无缩进，小四仿宋
+\titlecontents{noindentfssection}[0em]		% 缩进 0em
+  {\CJKfamily{fs}\zihao{-4}}      				% 仿宋小四
+  {}                                 			% 没有编号
+  {}                                 			% 没有编号
+  {\titlerule*[0.5pc]{$\cdot$}\contentspage} 	% 与 section 相同的页码格式
+
+% 两个参数分别为：章节编号及章节标题、页码
+\newcommand{\addNoindentTocEntryFsSectionWithPage}[2]{%
+  \phantomsection % 创建超链接锚点
+  \addtocontents{toc}{\protect\contentsline{noindentfssection}{#1}{#2}{}}
 }
 
 % 超链接

@@ -1,0 +1,19 @@
+\cleardoublepage
+\pagestyle{empty}
+\mypart{文献综述和开题报告}
+% 手动向目录中添加目录条目
+\addNoindentTocEntryWithPage{文献综述和开题报告封面}{-2} % 要求可以不编写页码，这里根据目录页的页码编写为 -2 页
+\addNoindentTocEntryWithPage{指导教师对文献综述和开题报告具体内容要求}{-1} % 要求可以不编写页码，这里根据目录页的页码编写为 -1 页
+\addNoindentTocEntryWithPageRoman{目录}{1} % 目录页页码固定为罗马数字 1
+% === 以下的五条目录需要手动设置页码 ===
+% 根据文献综述和开题报告的目录页的实际情况手动设置这里的页码，修改以下四条的第二个参数
+\addNoindentTocEntryFsSectionWithPage{一、文献综述（中期报告）}{1}
+\addNoindentTocEntryFsSectionWithPage{二、开题报告}{3}
+\addNoindentTocEntryFsSectionWithPage{三、外文翻译}{5}
+\addNoindentTocEntryFsSectionWithPage{四、外文原文}{7}
+% 要求可以不编写页码，这里根据文献综述和开题报告的实际情况，编写为最后一页的页码加 1
+\addNoindentTocEntryWithPage{《浙江大学本科生文献综述和开题报告考核表》}{8}
+% ===                           ===
+% 插入pdf文件
+\includepdf[pages=1]{pre-compiled-pdf/big-part2.pdf}
+\includepdf[pages=1-,pagecommand={\pagestyle{Content}}]{mid/main.pdf}
