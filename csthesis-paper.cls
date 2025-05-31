@@ -32,9 +32,14 @@
 
 % === 页面设置 ===
 % 纸张大小：A4
-% 页面边距：左 2.5cm；右 2cm；上 2.5cm；下 2cm；装订线 0cm
-\RequirePackage{geometry}	
-\geometry{inner=2.5cm, outer=2cm, top=2.5cm, bottom=2cm, bindingoffset=0cm}
+% 页面边距：左 2.5cm；右 2cm；上 2.5cm；下 2cm；装订线 0cm；页眉的下边缘与上边距的下边缘对齐；页脚的上边缘与下边距的上边缘对齐
+\RequirePackage{geometry}
+\geometry{
+    inner=2.5cm, outer=2cm, top=2.5cm+12pt, bottom=2cm+12pt, 
+    bindingoffset=0cm,
+    includeheadfoot=false, headheight=0pt, % footskip=12pt
+}
+
 % 设置首行缩进2字符
 % 使用 \noindent 命令可以取消缩进
 \RequirePackage{indentfirst}
